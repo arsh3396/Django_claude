@@ -10,5 +10,24 @@
     <h1>Welcome {{ name }}</h1>
     <p>Age: {{ age }} </p>
     <p>Language: {{ language }} </p>
+
+    {% if is_logged_in %}
+        <p>
+            {{ name }} have logged in.
+        </p>
+    {% else %}
+        <p>
+            {{ name }} please log in.
+        </p>
+    {% endif %}
+    
+    <h2>Skills of {{ name }}: </h2>
+    <ul>
+        {% for skill in skills %}
+            <li>
+                {{ skill }}
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
