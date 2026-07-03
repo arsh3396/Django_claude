@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Post
 
@@ -13,7 +13,11 @@ def home(request):
 
 # about page
 def about(request):
-    return render(request, 'core/about.html')
+    context = {
+        'Company_Name': 'Amazone',
+        'Industry': 'Technology',
+    }
+    return render(request, 'core/about.html', context)
 
 # contact page
 def contact(request):
@@ -26,3 +30,10 @@ def user_profile(request, username):
 # user id page
 def user_id(request, user_id):
     return HttpResponse(f"Your user id is {user_id}")
+
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    context = {
+        'post': post,
+    }
+    return render(request, 'core/post_detail.html', context)

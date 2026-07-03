@@ -36,6 +36,7 @@
     <img src="{% static 'core/images/image.png' %}" alt="Seedhey Maut">
     <img src="{% static 'core/images/krsna.png' %}" alt="KR$NA">
 
+    {% comment %} first type of post {% endcomment %}
    <h1>All posts:</h1>
    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {% for post in posts %}
@@ -57,6 +58,7 @@
         {% endfor %}
     </div>
 
+    {% comment %} second type of post {% endcomment %}
     <h1>All Posts: </h1>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- From Uiverse.io by Manish-Tamang --> 
@@ -81,6 +83,18 @@
             <p>No posts yet.</p>
         {% endfor %}
     </div>
+
+    <h1>All Posts: </h1>
+    {% for post in posts %} 
+        <div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <small> {{ post.created_at }}</small>
+        </div>
+        <hr>
+    {% empty %}
+        <p>No posts exists yet.</p>
+    {% endfor %}
 
 </body>
 </html>

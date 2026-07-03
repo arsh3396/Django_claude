@@ -1,0 +1,16 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Site{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/about/">About</a>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
