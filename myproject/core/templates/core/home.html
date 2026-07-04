@@ -73,9 +73,11 @@
                 <p class="text-sm">bash</p>
             </div>
             <div class="mt-4">
-                <p class="text-green-400">{{ post.title }}</p>
-                <p class="text-white">{{ post.content }} </p>
-                <p class="text-white">{{ post.created_at }}</p>
+                <p class="text-green-400">Title : {{ post.title }}</p>
+                <p class="text-white">Content : {{ post.content }} </p>
+                <p class="text-white">Date and Time : {{ post.created_at }}</p>
+                <p class="text-white">Author : {{ post.author }}</p>
+                <p class="text-white">Published or not : {{ post.is_published }}</p>
                 <p class="text-green-400">$</p>
             </div>
             </aside>
