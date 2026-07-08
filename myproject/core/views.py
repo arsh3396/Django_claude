@@ -5,7 +5,9 @@ from .models import Post
 # Create your views here.
 # home page
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(
+        is_published=True
+    ).order_by('-created_at')
     context = {
         'posts': posts,
     }
