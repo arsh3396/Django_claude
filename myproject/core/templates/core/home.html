@@ -24,14 +24,14 @@
         </p>
     {% endif %}
     
-    <h2>Skills of {{ name }}: </h2>
+    {% comment %} <h2>Skills of {{ name }}: </h2>
     <ul>
-        {% for skill in skills %}
+        {% for skill in  %}
             <li>
                 {{ skill }}
             </li>
         {% endfor %}
-    </ul>
+    </ul> {% endcomment %}
 
     <img src="{% static 'core/images/image.png' %}" alt="Seedhey Maut">
     <img src="{% static 'core/images/krsna.png' %}" alt="KR$NA">
@@ -94,6 +94,35 @@
             {% comment %} <p> {{ post.content }}</p> {% endcomment %}
         </div>
         <hr>
+    {% endfor %}
+
+    <!-- Categories Section -->
+    <h2>Categories</h2>
+    {% for category in categories %}
+        <a href="{% url 'category_posts' category.id %}">
+            {{ category.name }}
+        </a>;
+    {% endfor %}
+
+    <hr>
+
+    <!-- Posts Section -->
+    <h2>Latest Posts</h2>
+    {% for post in posts %}
+        <div>
+            <h3>
+                <a href="{% url 'post_detail' post.id %}">
+                    {{ post.title }}
+                </a>
+            </h3>
+            {% if post.category %}
+                <small>Category: {{ post.category.name }}</small>
+            {% endif %}
+            <p>{{ post.content }}</p>
+        </div>
+        <hr>
+    {% empty %}
+        <p>No posts yet.</p>
     {% endfor %}
 </body>
 </html>

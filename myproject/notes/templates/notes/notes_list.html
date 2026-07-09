@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Notes List: </h2>
+    
+    {% for note in notes %}
+        <h2>
+            <a href="{% url 'note_detail' note.id %}">
+                {{ note.title }}
+            </a>
+        </h2>
+        <small>Created date : {{ note.created_at }}</small>
+    {% empty %}
+        <p>No notes yet.</p>
+    {% endfor %}
+        
+</body>
+</html>

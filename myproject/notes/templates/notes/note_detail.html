@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>{{ note.title }}</h2>
+    <hr>
+    <p>{{ note.content }}</p>
+    <hr>
+    <small>{{ note.created_at }}</small>
+    <hr>
+    <a href="{% url 'notes_list' %}">Back to Notes</a>
+</body>
+</html>

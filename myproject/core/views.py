@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Post
+from .models import Post, Category
 
 # Create your views here.
 # home page
@@ -8,8 +8,10 @@ def home(request):
     posts = Post.objects.filter(
         is_published=True
     ).order_by('-created_at')
+    categories = Category.objects.all()
     context = {
         'posts': posts,
+        'categories': categories
     }
     return render(request, 'core/home.html', context)
 
@@ -39,3 +41,15 @@ def post_detail(request, post_id):
         'post': post,
     }
     return render(request, 'core/post_detail.html', context)
+
+def category_post(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    posts = Post.objects.filter(
+        category = category,
+        is_published = True
+    ).order_by('-created_at')
+    context = {
+        'category': category,
+        'posts': posts
+    }
+    return render(request, 'core/category_posts.html', context)
