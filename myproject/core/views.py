@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Post, Category
+from .forms import ContactForm
+from django.contrib import messages
 
 # Create your views here.
 # home page
@@ -53,3 +55,28 @@ def category_post(request, category_id):
         'posts': posts
     }
     return render(request, 'core/category_posts.html', context)
+
+def contact(request):
+    
+    # post request
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            
+            print(f"Name: {name}, Email: {email}, Message: {message}")
+            messages.success(request, f"Thanks {name}! Your message was sent.")
+            return redirect('contact')
+    
+    # this is for get request and it will show empty form
+    else :
+        form = ContactForm()
+        
+    context = {
+        'form': form
+    }
+    return render(request, 'core/contact.html', context)
+        

@@ -6,7 +6,18 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is contact page.</h1>
-    <a href="/">Go to Home</a>
+    <h1>Contact Us</h1>
+    <form method="POST">
+        {% csrf_token %}    
+        {{ form.as_p }}
+        {% if messages %}
+            {% for message in messages %}
+                <div style="color: green;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <button type="submit">Send Message</button>
+    </form>
 </body>
 </html>
