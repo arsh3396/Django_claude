@@ -6,7 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Notes List: </h2>
+    <h2>All Notes: </h2>
+
+    <a href="{% url 'add_note' %}">+Add New Note</a>
     
     {% for note in notes %}
         <h2>
