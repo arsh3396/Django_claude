@@ -39,7 +39,7 @@ def add_note(request):
 def edit_note(request, note_id):
     note = get_object_or_404(Note, id=note_id)
     if request.method == 'POST':
-        form = NoteForm(request.POST, intstance=note)
+        form = NoteForm(request.POST, instance=note)
         
         if form.is_valid():
             form.save()
@@ -54,3 +54,16 @@ def edit_note(request, note_id):
         'note': note
     }        
     return render(request, 'notes/edit_note.html', context)
+
+def delete_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    
+    if request.method == 'POST':
+        note.delete()
+        messages.success(request, "Note deleted!")
+        return redirect('notes_list')
+
+    context = {
+        'note': note
+    }
+    return render(request, 'notes/delete_note.html', context)

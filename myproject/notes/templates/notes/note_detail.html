@@ -10,9 +10,9 @@
     <hr>
     <p>{{ note.content }}</p>
     <hr>
-    <small>{{ note.created_at }}</small>
+    <small>Created: {{ note.created_at }}</small>
     <hr>
     <a href="{% url 'edit_note' note.id}">Edit Note</a>
     <a href="{% url 'notes_list' %}">Back to Notes</a>
 </body>
-</html>
+</html>f

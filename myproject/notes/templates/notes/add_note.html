@@ -12,7 +12,28 @@
     <form method="POST">
         {% csrf_token %}
 
-        {{ form.as_p }}
+        <div>
+            <label>Title: </label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                {% for error in form.title.errors %}
+                    <p style="color: red;">{{ error }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div>
+            <label>Content: </label>
+            {{ form.content }}
+            
+            {% if form.content.errors %}
+                {% for error in form.content.errors  %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+                
+        </div>
 
         <button type="submit">Save Note</button>
         <a href="{% url 'notes_list' %}">Cancel</a>
